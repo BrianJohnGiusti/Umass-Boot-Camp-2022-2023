@@ -39,10 +39,16 @@ removeButton.innerText = 'remove';
 
 //get info for item
 newItem.innerText = input.value;
+
+//set to local
+//how do you set multiple to the same string? 
+//loop of [i] and append a number? 
+//map them?
+localStorage.setItem("toDoList", JSON.stringify(newItem.innerText));
+
+//append
 newItem.appendChild(removeButton);
 todoList.appendChild(newItem);
 });
 
 
-let listOfToDo = document.querySelectorAll('li');
-localStorage.setItem("listOfToDo", JSON.stringify(listOfToDo));
