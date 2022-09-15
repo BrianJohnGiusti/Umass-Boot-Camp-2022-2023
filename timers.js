@@ -12,12 +12,19 @@ countDown(4);
 
 //param: number
 function countDown(num){
-    for(let i = 1; i < num; i++){
-        console.log(num - i)
-    }
-    console.log("DONE!");
-   }
+  let timer = setInterval(function(){
+    num = num - 1;
 
+    if(num > 0){
+      console.log(num);
+    }
+    else{
+      console.log("DONE!");
+      clearInterval(timer);
+    }
+
+  }, 1000)
+}
 countDown(4);
 
 /*
@@ -37,14 +44,17 @@ and each time that a random number is picked,
 //conditional >.75
 //return count
 function randomGame(){
-    let count = 1;  
-    let randomNum = Math.random();
-  
-    while(randomNum < .75){
-      randomNum = Math.random();
-      count ++; 
+  let randomNum;
+  let count = 1;
+  let timer = setInterval(function(){
+    randomNum = Math.random();
+    console.log(randomNum)
+    if(randomNum > .75) {
+      clearInterval(timer);
+      console.log(count);
     }
-   console.log(count);
-  }
-  
+    count++
+  }, 1000)
+}
+
 randomGame();
