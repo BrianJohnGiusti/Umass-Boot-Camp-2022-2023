@@ -1,0 +1,31 @@
+What is HTTP?
+This is the protocol that tell the server how to get the file
+
+What is a URL?
+A string of data that: points you to a specific IP, tells the server what files to get, and what some query parameters are
+
+What is DNS?
+Is the way that we get the IP addresses. This system is a directory of different IP address from either a server or cache.
+
+What is a query string?
+A string on the end of the URL that adds information that is needed to fulfill the request/access that page
+
+What are two HTTP verbs and how are they different?
+Two verbs could be GET and POST (DELETE, PUT). GET is a request to retrive information from the server and have it sent back.
+POST is a way to get information but also modify information on the server. 
+
+What is an HTTP request?
+A request is a package of data sent to the server. This has instructions of what to do and the 
+parameters that might go along with it
+
+What is an HTTP response?
+This is the code and data given back from a request. The server tells us the status and the data we want if possible
+
+What is an HTTP header? Give a couple examples of request and response headers you have seen.
+This is additonal information given to/from the server. 
+request: cookies, accept
+response: cookies, cache
+
+What are the processes that happen when you type “http://somesite.com/some/page.html” into a browser?
+The URL is going to get the file using HTTP. It then is going to get the IP of somesite.com using the DNS. It will get a 
+response from the server at that IP, giving us the page data back. This is then rendered, some additonal scripts may be called. 
