@@ -36,7 +36,7 @@ function makeBoard() {
 
 function makeHtmlBoard() {
   // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
-  let htmlBoard = document.querySelector('board');
+  let htmlBoard = document.querySelector('#board');
   //solution sugggests
   //const board = document.getElementById('board');
 
@@ -53,7 +53,7 @@ function makeHtmlBoard() {
   //loop through and create the top clickable row
   for (let x = 0; x < WIDTH; x++) {
     //crate a data element
-    let headCell = document.createElement("td");
+    const headCell = document.createElement("td");
     //set it to an id
     headCell.setAttribute("id", x);
     //add it to the top 
