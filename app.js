@@ -1,22 +1,41 @@
-console.log("Let's get this party started!");
+const $gifArea = $("#gif-area");
+const $searchInput = $("#search");
 
-/*
-Part 1: Building the Form
-We’ve provided a starter HTML file, but there’s next to nothing in the body. Start by building a simple form with an input for a search term and a submit button. When the user submits the form, use axios to make a request to GIPHY for information based on that term. After receiving the response, console.log the response data to make sure you’re getting back what you expect.
+/* use ajax result to add a gif */
 
-For example, here is what the AJAX request URL would look like for search term of “hilarious”: http://api.giphy.com/v1/gifs/search?q=hilarious&api_key=MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym. You can click on this URL and see the JSON you will get back. To view this in a nicer format, we highly recommend using the JSON Viewer chrome extension. This is also the data you should console.log when the form is submitted.
-
-Part 2: Appending GIFs
-Now that you’re communicating properly with the API, you should do something more interesting with the response data. Instead of logging it, grab a GIF from the response data and append the GIF to the page. Ensure that if you submit the form multiple times, you’ll get multiple GIFs showing up.
-
-Part 3: Removing GIFs
-Add a button next to the form which, when clicked, will remove all GIFs from the page.
-*/
-
-async function getGif() {
-    let response = await axios.get("/api/card");
-    console.log("got", response);
-    return response.data;
+function addGif(res) {
+  let numResults = res.data.length;
+  if (numResults) {
+    let randomIdx = Math.floor(Math.random() * numResults);
+    let $newCol = $("<div>", { class: "col-md-4 col-12 mb-4" });
+    let $newGif = $("<img>", {
+      src: res.data[randomIdx].images.original.url,
+      class: "w-100"
+    });
+    $newCol.append($newGif);
+    $gifArea.append($newCol);
   }
+}
 
-let gif = await getGif();
+/* handle form submission: clear search box & make ajax call */
+
+$("form").on("submit", async function(evt) {
+  evt.preventDefault();
+
+  let searchTerm = $searchInput.val();
+  $searchInput.val("");
+
+  const response = await axios.get("http://api.giphy.com/v1/gifs/search", {
+    params: {
+      q: searchTerm,
+      api_key: "MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym"
+    }
+  });
+  addGif(response.data);
+});
+
+/* remove gif */
+
+$("#remove").on("click", function() {
+  $gifArea.empty();
+});
